@@ -1,38 +1,165 @@
-.App {
+:root {
+  --dem: #002868;
+  --dem-lightest: #eaf0f8;
+  --dem-light: #3571c0;
+  --gop: #bf0a30;
+  --gop-lightest: #feeeeb;
+  --gop-light: #fe5c40;
+  --borderRadius: 10px;
+}
+
+body,
+html,
+#root {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: whitesmoke;
+}
+
+.appHeader {
+  border-bottom: 1px black solid;
+  top: 0;
+  height: 70px;
+  background-color: whitesmoke;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing {
+  padding: 20px;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+p {
+  text-align: left;
+  line-height: 1.25;
+}
+
+section {
+  margin-top: 40px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
+  grid-row-gap: 15px;
+  grid-column-gap: 15px;
+  padding: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--borderRadius);
+  padding-bottom: 20px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  transition: 0.3s linear;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card .winner {
+  margin: 50px auto 10px auto;
+}
+
+.card header {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card footer {
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card footer > span {
+  padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card footer .totalGop {
+  color: var(--gop-light);
+}
+
+.card footer .totalDem {
+  color: var(--dem-light);
+}
+
+.gopCard {
+  background-color: var(--gop-lightest);
+  /* border: 1px var(--gop-light) solid; */
+}
+
+/* .gopCard h2 {
+  color: var(--gop);
+}
+
+.demcard h2 {
+  color: var(--dem);
+} */
+
+.demcard {
+  background-color: var(--dem-lightest);
+  /* border: 1px var(--dem-light) solid; */
+}
+
+.chartWrapper .recharts-wrapper {
+  margin: 0 auto;
+  border: 1px #00000010 solid;
+  border-radius: var(--borderRadius);
+  /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3); */
+  /* background-color: whitesmoke; */
+}
+
+.chartWrapper .recharts-tooltip-wrapper {
+  border-radius: var(--borderRadius);
+}
+
+.optionsList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+.optionsList > span {
+  margin: 0 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.optionsList > div {
+  width: 200px;
+}
+
+@media (min-width: 600px) {
+  .main {
+    padding: 30px;
+    grid-row-gap: 25px;
+    grid-column-gap: 25px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .landing {
+    padding: 50px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .main {
+    padding: 70px;
+    grid-row-gap: 40px;
+    grid-column-gap: 40px;
+  }
+
+  .landing {
+    padding: 100px;
   }
 }
