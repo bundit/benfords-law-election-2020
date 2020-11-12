@@ -69,21 +69,89 @@ STATES.forEach(({ name, abbreviation, fips }) => {
       const candidates =
         candidateResults.candidates || candidateResults[0].candidates;
 
+      const { candidateID: trumpID } = candidates.find(
+        candidate => candidate.shortName === "Trump"
+      );
+
+      const { candidateID: bidenID } = candidates.find(
+        candidate => candidate.shortName === "Biden"
+      );
+
+      const races = results.races.map(race => ({
+        ...race,
+        candidates: race.candidates.map(raceCandidate => ({
+          ...raceCandidate,
+          name: candidates.find(
+            candidate => candidate.candidateID === raceCandidate.candidateID
+          ).shortName
+        }))
+      }));
+
+      const totalCounties = results.races.length;
+      const chartData = [
+        { name: null },
+        { name: 1, Biden: 0, Trump: 0, Benford: totalCounties * 0.301 },
+        { name: 2, Biden: 0, Trump: 0, Benford: totalCounties * 0.176 },
+        { name: 3, Biden: 0, Trump: 0, Benford: totalCounties * 0.125 },
+        { name: 4, Biden: 0, Trump: 0, Benford: totalCounties * 0.097 },
+        { name: 5, Biden: 0, Trump: 0, Benford: totalCounties * 0.079 },
+        { name: 6, Biden: 0, Trump: 0, Benford: totalCounties * 0.067 },
+        { name: 7, Biden: 0, Trump: 0, Benford: totalCounties * 0.058 },
+        { name: 8, Biden: 0, Trump: 0, Benford: totalCounties * 0.051 },
+        { name: 9, Biden: 0, Trump: 0, Benford: totalCounties * 0.046 },
+        { name: null }
+      ];
+
+      races.forEach(race => {
+        race.candidates.forEach(({ name: candidateName, vote }) => {
+          if (candidateName === "Trump" || candidateName === "Biden") {
+            const leadingDigit = String(vote)[0];
+
+            chartData[leadingDigit][candidateName] += 1;
+          }
+        });
+      });
+
+      const trumpVotes = results.races.reduce(
+        (acc, race) =>
+          acc +
+          race.candidates.find(candidate => candidate.candidateID === trumpID)
+            .vote,
+        0
+      );
+
+      const bidenVotes = results.races.reduce(
+        (acc, race) =>
+          acc +
+          race.candidates.find(candidate => candidate.candidateID === bidenID)
+            .vote,
+        0
+      );
+
+      const totalVotes = results.races.reduce(
+        (acc, race) =>
+          acc +
+          race.candidates.reduce((acc2, candidate) => acc2 + candidate.vote, 0),
+        0
+      );
+
+      const bidenPercent = (bidenVotes * 100) / totalVotes;
+      const trumpPercent = (trumpVotes * 100) / totalVotes;
+
       const payload = {
+        lastUpdated: results.lastUpdated,
         name,
         fips,
         abbreviation,
         candidates,
         counties,
-        races: results.races.map(race => ({
-          ...race,
-          candidates: race.candidates.map(raceCandidate => ({
-            ...raceCandidate,
-            name: candidates.find(
-              candidate => candidate.candidateID === raceCandidate.candidateID
-            ).shortName
-          }))
-        }))
+        trumpVotes,
+        trumpPercent,
+        bidenVotes,
+        bidenPercent,
+        totalVotes,
+        races,
+        chartData
       };
 
       try {
