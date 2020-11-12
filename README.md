@@ -1,5 +1,7 @@
 Live @ [https://www.benford2020.com](https://www.benford2020.com)
 
+![Screen Shot 2020-11-12 at 12 17 10 AM](https://user-images.githubusercontent.com/22352870/98913615-6c82fb00-247c-11eb-85bc-6de10b1590cb.png)
+
 # Benford's Law
 
 [Benford's law](https://en.wikipedia.org/wiki/Benford%27s_law) is an observation about the frequency distribution of leading digits in many real-life sets of numerical data.
