@@ -3,16 +3,15 @@ import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveContainer } from "recharts";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { forceCheck } from "react-lazyload";
+import LazyLoad, { forceCheck } from "react-lazyload";
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
+import GraphExample from "./assets/graph-example.png";
 import StateCard from "./components/state-card";
 import StateChart from "./components/state-chart";
-import formatNumber from "./utils/formatNumber";
-
 import TableExample from "./assets/table-example.png";
-import GraphExample from "./assets/graph-example.png";
+import formatNumber from "./utils/formatNumber";
 
 const STATE_FIPS = [
   "01",
@@ -399,9 +398,11 @@ function App() {
             <span>{formatNumber(totalVotes)} Total Votes</span>
           </div>
 
-          <ResponsiveContainer height={400} width="100%">
-            <StateChart chartData={chartData} />
-          </ResponsiveContainer>
+          <LazyLoad height={400} offset={-200}>
+            <ResponsiveContainer height={400} width="100%">
+              <StateChart chartData={chartData} />
+            </ResponsiveContainer>
+          </LazyLoad>
 
           <div
             className="winner"
