@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+Live @ [https://www.benford2020.com](https://www.benford2020.com)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Screen Shot 2020-11-12 at 12 17 10 AM](https://user-images.githubusercontent.com/22352870/98913615-6c82fb00-247c-11eb-85bc-6de10b1590cb.png)
 
-## Available Scripts
+# Benford's Law
 
-In the project directory, you can run:
+[Benford's law](https://en.wikipedia.org/wiki/Benford%27s_law) is an observation about the frequency distribution of leading digits in many real-life sets of numerical data.
 
-### `yarn start`
+It has been shown that this result applies to a wide variety of data sets, including electricity bills, street addresses, stock prices, house prices, population numbers, death rates, lengths of rivers, and physical and mathematical constants. It tends to be most accurate when values are distributed across multiple orders of magnitude, especially if the process generating the numbers is described by a power law (which is common in nature).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Benford's Law and the US 2020 Election
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There have been [multiple graphs](https://github.com/cjph8914/2020_benfords) circulating online that questions the authenticity of the results of the election. However, these graphs only show data in some states.
 
-### `yarn test`
+## What is this website?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This website aims to display both candidates' results graphed side by side against Benford's Law in an easily digestible form.
 
-### `yarn build`
+## What is the data being graphed?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The method is simple. Take the number of votes that a candidate received in each county and count its leading digit. Graph the total number of occurance of each leading digit (1-9) and the expected Benford's values.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Data source
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All data is sourced from [https://www.politico.com/](https://www.politico.com/).
