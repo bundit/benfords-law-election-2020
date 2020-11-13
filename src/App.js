@@ -289,10 +289,13 @@ function App() {
           It has been shown that this result applies to a wide variety of data
           sets, including electricity bills, street addresses, stock prices,
           house prices, population numbers, death rates, lengths of rivers, and
-          physical and mathematical constants. It tends to be most accurate when
-          values are distributed across multiple orders of magnitude, especially
-          if the process generating the numbers is described by a power law
-          (which is common in nature).
+          physical and mathematical constants. It tends to be{" "}
+          <em>
+            most accurate when values are distributed across multiple orders of
+            magnitude
+          </em>
+          , especially if the process generating the numbers is described by a
+          power law (which is common in nature).
         </p>
 
         <section>
@@ -308,6 +311,21 @@ function App() {
             </a>{" "}
             circulating online that questions the authenticity of the results of
             the election. However, these graphs only show data in some states.
+          </p>
+          <p>
+            Benford&apos;s Law is{" "}
+            <a href="https://www.jstor.org/stable/23011436?seq=1">
+              problematical at best as a forensic tool
+            </a>{" "}
+            when applied to elections. <br />
+            And, as one applies more sophisticated methods of estimation, the
+            results become increasingly inconsistent. Worse still, when compared
+            with observational data, the{" "}
+            <a href="https://repository.library.georgetown.edu/handle/10822/557850">
+              application of Benford&apos;s Law frequently predicts fraud where
+              none has occurred
+            </a>
+            .
           </p>
         </section>
 
