@@ -151,6 +151,24 @@ img {
   margin: 5px;
 }
 
+.share-button {
+  border-radius: var(--borderRadius);
+  outline: none;
+  color: whitesmoke;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.gopCard .share-button {
+  background-color: var(--gop);
+}
+
+.demcard .share-button {
+  background-color: var(--dem);
+}
+
 @media (min-width: 600px) {
   h1 {
     font-size: 60px;

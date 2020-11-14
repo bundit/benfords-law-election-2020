@@ -1,13 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShare, faCheck } from "@fortawesome/free-solid-svg-icons";
 import LazyLoad from "react-lazyload";
 import PropTypes from "prop-types";
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import StateChart from "./state-chart";
+import copyToClipboard from "../utils/copyToClipboard";
 import formatNumber from "../utils/formatNumber";
 
 const StateCard = ({ name, abbreviation, data, setStates }) => {
   const { races, chartData, trumpVotes, bidenVotes, totalVotes } = data;
   const cardRef = useRef(null);
+  const [hasCopiedShare, setHasCopiedShare] = useState(false);
 
   const trumpPercent = ((trumpVotes * 100) / totalVotes).toFixed(2);
   const bidenPercent = ((bidenVotes * 100) / totalVotes).toFixed(2);
@@ -18,6 +22,12 @@ const StateCard = ({ name, abbreviation, data, setStates }) => {
 
   function getSourceHref() {
     return `https://www.politico.com/2020-election/results/${formatName()}/`;
+  }
+
+  function handleShareClick() {
+    copyToClipboard(`${window.location.origin}/?show=${formatName()}`);
+
+    setHasCopiedShare(true);
   }
 
   useEffect(() => {
@@ -65,6 +75,21 @@ const StateCard = ({ name, abbreviation, data, setStates }) => {
           {formatNumber(Math.abs(bidenVotes - trumpVotes))}
         </strong>
         <div>({Math.abs(bidenPercent - trumpPercent).toFixed(2)}% Lead)</div>
+        <button
+          type="button"
+          className="share-button"
+          onClick={handleShareClick}
+        >
+          {hasCopiedShare ? (
+            <>
+              <FontAwesomeIcon icon={faCheck} /> Copied to Clipboard
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faShare} /> Share
+            </>
+          )}
+        </button>
       </div>
 
       <footer>

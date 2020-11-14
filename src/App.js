@@ -3,6 +3,7 @@ import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveContainer } from "recharts";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faShare, faCheck } from "@fortawesome/free-solid-svg-icons";
 import LazyLoad, { forceCheck } from "react-lazyload";
 import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
@@ -11,6 +12,7 @@ import GraphExample from "./assets/graph-example.png";
 import StateCard from "./components/state-card";
 import StateChart from "./components/state-chart";
 import TableExample from "./assets/table-example.png";
+import copyToClipboard from "./utils/copyToClipboard";
 import formatNumber from "./utils/formatNumber";
 
 const STATE_FIPS = [
@@ -91,7 +93,7 @@ function App() {
     value: "Alphabetical",
     label: "Alphabetical"
   });
-
+  const [hasCopiedShare, setHasCopiedShare] = useState(false);
   const overallResultsRef = useRef(null);
 
   useEffect(() => {
@@ -263,6 +265,12 @@ function App() {
     setTimeout(forceCheck, 300);
   }
 
+  function handleShareClick() {
+    copyToClipboard(`${window.location.origin}/?show=overall-results`);
+
+    setHasCopiedShare(true);
+  }
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
 
@@ -423,7 +431,29 @@ function App() {
         <section ref={overallResultsRef}>
           <h1>Overall Results</h1>
 
-          <h2>Entire Dataset</h2>
+          <h2>
+            Entire Dataset{" "}
+            <button
+              type="button"
+              style={{
+                backgroundColor: "#002868",
+                position: "relative",
+                bottom: 3
+              }}
+              className="share-button"
+              onClick={handleShareClick}
+            >
+              {hasCopiedShare ? (
+                <>
+                  <FontAwesomeIcon icon={faCheck} /> Copied to Clipboard
+                </>
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faShare} /> Share
+                </>
+              )}
+            </button>
+          </h2>
           <div className="optionsList">
             <span>{formatNumber(totalCounties)} Total Counties</span>
             <span>{formatNumber(totalVotes)} Total Votes</span>
