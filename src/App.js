@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ResponsiveContainer } from "recharts";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import LazyLoad, { forceCheck } from "react-lazyload";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 
 import GraphExample from "./assets/graph-example.png";
@@ -91,6 +91,8 @@ function App() {
     value: "Alphabetical",
     label: "Alphabetical"
   });
+
+  const overallResultsRef = useRef(null);
 
   useEffect(() => {
     Promise.all(
@@ -261,6 +263,17 @@ function App() {
     setTimeout(forceCheck, 300);
   }
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("show") === "overall-results") {
+      setTimeout(
+        () => overallResultsRef.current.scrollIntoView({ behavior: "smooth" }),
+        300
+      );
+    }
+  }, []);
+
   return (
     <div className="app">
       <header className="appHeader">
@@ -407,7 +420,7 @@ function App() {
           </p>
         </section>
 
-        <section id="overall-results">
+        <section ref={overallResultsRef}>
           <h1>Overall Results</h1>
 
           <h2>Entire Dataset</h2>

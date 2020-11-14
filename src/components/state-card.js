@@ -1,12 +1,13 @@
 import LazyLoad from "react-lazyload";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import StateChart from "./state-chart";
 import formatNumber from "../utils/formatNumber";
 
 const StateCard = ({ name, abbreviation, data, setStates }) => {
   const { races, chartData, trumpVotes, bidenVotes, totalVotes } = data;
+  const cardRef = useRef(null);
 
   const trumpPercent = ((trumpVotes * 100) / totalVotes).toFixed(2);
   const bidenPercent = ((bidenVotes * 100) / totalVotes).toFixed(2);
@@ -19,8 +20,22 @@ const StateCard = ({ name, abbreviation, data, setStates }) => {
     return `https://www.politico.com/2020-election/results/${formatName()}/`;
   }
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("show") === formatName()) {
+      setTimeout(
+        () => cardRef.current.scrollIntoView({ behavior: "smooth" }),
+        300
+      );
+    }
+  }, []);
+
   return (
-    <div className={`card ${trumpVotes > bidenVotes ? "gopCard" : "demcard"}`}>
+    <div
+      className={`card ${trumpVotes > bidenVotes ? "gopCard" : "demcard"}`}
+      ref={cardRef}
+    >
       <header>
         <h2>{name}</h2>
 
