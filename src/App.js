@@ -335,18 +335,36 @@ function App() {
           </p>
           <p>
             Benford&apos;s Law is{" "}
-            <a href="https://www.jstor.org/stable/23011436?seq=1">
+            <a
+              href="https://www.jstor.org/stable/23011436?seq=1"
+              target="_blank"
+              rel="noreferrer"
+            >
               problematical at best as a forensic tool
             </a>{" "}
             when applied to elections. <br />
             And, as one applies more sophisticated methods of estimation, the
             results become increasingly inconsistent. Worse still, when compared
             with observational data, the{" "}
-            <a href="https://repository.library.georgetown.edu/handle/10822/557850">
+            <a
+              href="https://repository.library.georgetown.edu/handle/10822/557850"
+              target="_blank"
+              rel="noreferrer"
+            >
               application of Benford&apos;s Law frequently predicts fraud where
               none has occurred
             </a>
             .
+          </p>
+          <p>
+            <a
+              href="https://www.youtube.com./watch?v=etx0k1nLn78"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Here is a good video that explains Benford&apos;s Law and the
+              Election.
+            </a>
           </p>
         </section>
 
@@ -375,6 +393,12 @@ function App() {
               https://www.politico.com/
             </a>
             .
+          </p>
+          <p>
+            <em>
+              This website does not aim to make any claims about the 2020
+              election. It was merely created for fun and curiosity.
+            </em>
           </p>
         </section>
 
